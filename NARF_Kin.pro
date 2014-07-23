@@ -12,9 +12,21 @@ TARGET = NARF_Kin
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += src\\main\\main.cpp\
+		src\\main\\mainwindow.cpp \
+	src/FeatureExtractor/extractor_NARF.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += include\\main\\mainwindow.h \
+    include/FeatureExtractor/extractor_NARF.h
 
-FORMS    += mainwindow.ui
+FORMS    += forms\\main\\mainwindow.ui
+
+### INCLUDES
+INCLUDEPATH += $(PCL_ROOT)\\include\\pcl-1.6
+INCLUDEPATH += $(OpenCV_DIR)\\include
+
+### LIBRARIES
+LIBS += -L$(OPENCV_DIR)\\x86\\vc10\\lib
+
+
+LIBS += -L$(PCL_ROOT)\\lib
