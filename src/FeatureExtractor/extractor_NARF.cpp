@@ -2,7 +2,12 @@
 
 using namespace FeatureExtractor;
 
-FeatureExtractor::extractor_narf::extractor_narf()
+Extractor_narf::Extractor_narf()
+{
+	this->setParameters();
+}
+
+void Extractor_narf::setParameters()
 {
 	this->angular_resolution = 0.5f;
 	this->support_size = 0.2f;

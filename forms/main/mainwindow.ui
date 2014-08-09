@@ -35,7 +35,7 @@
            <number>0</number>
           </property>
           <item row="1" column="0" colspan="2">
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="comboBox_kinect"/>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label">
@@ -52,10 +52,28 @@
            </widget>
           </item>
           <item row="3" column="0" colspan="2">
-           <widget class="QComboBox" name="comboBox_2"/>
+           <widget class="QComboBox" name="comboBox_descriptor">
+            <item>
+             <property name="text">
+              <string>NARF</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SIFT</string>
+             </property>
+            </item>
+           </widget>
           </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButton">
+          <item row="5" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButton_start">
+            <property name="text">
+             <string>START</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButton_settings">
             <property name="text">
              <string>Settings</string>
             </property>

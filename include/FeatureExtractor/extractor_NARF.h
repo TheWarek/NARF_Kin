@@ -16,7 +16,7 @@
 namespace FeatureExtractor
 {
 
-class extractor_narf
+class Extractor_narf
 {
 
 public:
@@ -32,9 +32,10 @@ public:
 	/**
 	 * @brief constructor
 	 */
-	extractor_narf();
+	Extractor_narf();
 
 private:
+	void setParameters();
 
 };
 

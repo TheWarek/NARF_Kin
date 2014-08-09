@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "include/settings/settings_narf.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +16,19 @@ public:
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
 
+	/**
+	 * @brief mNarf_window parameters for NARF
+	 */
+	Settings_narf *mNarf_window;
+	/**
+	 * @brief mNarf_extractor NARF extractor object
+	 */
+	FeatureExtractor::Extractor_narf *mNarf_extractor;
+
 private slots:
-	void on_pushButton_clicked();
+	void on_pushButton_start_clicked();
+
+	void on_pushButton_settings_clicked();
 
 private:
 	Ui::MainWindow *ui;
