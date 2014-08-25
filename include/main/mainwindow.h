@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "include/settings/settings_narf.h"
+#include "include/Kinect/kinect_viewer.h"
+
+using namespace Kinect;
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +27,16 @@ public:
 	 * @brief mNarf_extractor NARF extractor object
 	 */
 	FeatureExtractor::Extractor_narf *mNarf_extractor;
+
+	/**
+	 * @brief MainWindow::isConnected simple check if device is connected
+	 */
+	void MainWindow::isConnected();
+
+	/**
+	 * @brief mKinect_viewer viewer object
+	 */
+	Kinect_viewer *mKinect_viewer;
 
 private slots:
 	void on_pushButton_start_clicked();

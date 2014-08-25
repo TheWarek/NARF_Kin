@@ -19,11 +19,13 @@ WIN32
 SOURCES += src/main/main.cpp\
 		src/main/mainwindow.cpp \
 	src/settings/settings_narf.cpp \
-    src/FeatureExtractor/extractor_narf.cpp
+    src/FeatureExtractor/extractor_narf.cpp \
+    src/Kinect/kinect_viewer.cpp
 
 HEADERS  += include/main/mainwindow.h \
 	include/settings/settings_narf.h \
-    include/FeatureExtractor/extractor_narf.h
+    include/FeatureExtractor/extractor_narf.h \
+    include/Kinect/kinect_viewer.h
 
 FORMS    += forms/main/mainwindow.ui \
     forms/settings/settings_narf.ui
@@ -35,9 +37,11 @@ INCLUDEPATH += $(PCL_ROOT)/3rdParty/Eigen/include
 INCLUDEPATH += $(PCL_ROOT)/3rdParty/VTK/include/vtk-5.8
 INCLUDEPATH += $(PCL_ROOT)/3rdParty/FLANN/include
 INCLUDEPATH += $(OpenCV_DIR)/include
+INCLUDEPATH += $(OPEN_NI_INCLUDE) \
 
 ### LIBRARIES
-LIBS += -L$(OPENCV_DIR)/x86/vc10/lib/ \
+#OpenCV
+Debug: LIBS += -L$(OPENCV_DIR)/x86/vc10/lib/ \
 -lopencv_core248d \
 -lopencv_highgui248d  \
 -lopencv_imgproc248d  \
@@ -52,7 +56,8 @@ LIBS += -L$(OPENCV_DIR)/x86/vc10/lib/ \
 #-lopencv_gpu248d \
 -lopencv_video248d
 
-LIBS += -L$(PCL_ROOT)/lib/ \
+#PCL
+Debug: LIBS += -L$(PCL_ROOT)/lib/ \
 -lpcl_apps_debug \
 -lpcl_common_debug \
 -lpcl_features_debug \
@@ -71,7 +76,8 @@ LIBS += -L$(PCL_ROOT)/lib/ \
 -lpcl_tracking_debug \
 -lpcl_visualization_debug
 
-LIBS += -L$(PCL_ROOT)/3rdParty/VTK/lib/vtk-5.8/ \
+#VTK
+Debug: LIBS += -L$(PCL_ROOT)/3rdParty/VTK/lib/vtk-5.8/ \
 -lMapReduceMPI-gd \
 -lmpistubs-gd  \
 -lQVTK-gd \
@@ -109,20 +115,128 @@ LIBS += -L$(PCL_ROOT)/3rdParty/VTK/lib/vtk-5.8/ \
 -lvtkWidgets-gd \
 -lvtkzlib-gd
 
-LIBS += -L$(PCL_ROOT)/3rdParty/Boost/lib/ \
+# Boost
+Debug: LIBS += -L$(PCL_ROOT)/3rdParty/Boost/lib/ \
 -llibboost_date_time-vc100-mt-gd-1_49 \
 -llibboost_thread-vc100-mt-gd-1_49 \
 -llibboost_filesystem-vc100-mt-gd-1_49 \
 -llibboost_system-vc100-mt-gd-1_49 \
 -llibboost_iostreams-vc100-mt-gd-1_49
 
-LIBS += -L$(PCL_ROOT)/3rdParty/FLANN/lib/ \
+#FLANN
+Debug: LIBS += -L$(PCL_ROOT)/3rdParty/FLANN/lib/ \
 -lflann_cpp_s-gd
 
-LIBS += -L$(OPEN_NI_ROOT)/Lib/ \
--lopenNI
+#OpenNI
+Debug: LIBS += -L$(OPEN_NI_LIB) \
+-lopenNI \
+-lOpenNI \
+-lNiSampleModule \
+-lNiSampleExtensionModule
 
-LIBS += -lglut
+#glut
+Debug: LIBS += -lglut
 
 # VTK dependency
-LIBS += advapi32.lib
+Debug: LIBS += advapi32.lib
+
+### Release LIBRARIES
+#OpenCV
+Release: LIBS += -L$(OPENCV_DIR)/x86/vc10/lib/ \
+-lopencv_core248 \
+-lopencv_highgui248  \
+-lopencv_imgproc248  \
+-lopencv_features2d248  \
+-lopencv_calib3d248 \
+-lopencv_contrib248 \
+-lopencv_flann248 \
+-lopencv_legacy248 \
+-lopencv_ml248 \
+-lopencv_objdetect248 \
+-lopencv_ts248 \
+#-lopencv_gpu248 \
+-lopencv_video248
+
+#PCL
+Release: LIBS += -L$(PCL_ROOT)/lib/ \
+-lpcl_apps_release \
+-lpcl_common_release \
+-lpcl_features_release \
+-lpcl_filters_release \
+-lpcl_io_release \
+-lpcl_io_ply_release \
+-lpcl_kdtree_release \
+-lpcl_keypoints_release \
+-lpcl_octree_release \
+#-lpcl_range_image_border_extractor_release \
+-lpcl_registration_release \
+-lpcl_sample_consensus_release \
+-lpcl_search_release \
+-lpcl_segmentation_release \
+-lpcl_surface_release \
+-lpcl_tracking_release \
+-lpcl_visualization_release
+
+#VTK
+Release: LIBS += -L$(PCL_ROOT)/3rdParty/VTK/lib/vtk-5.8/ \
+-lMapReduceMPI \
+-lmpistubs  \
+-lQVTK \
+-lvtkalglib \
+-lvtkCharts \
+-lvtkCommon \
+-lvtkDICOMParser \
+-lvtkexoIIc \
+-lvtkexpat \
+-lvtkFiltering \
+-lvtkfreetype \
+-lvtkftgl \
+-lvtkGenericFiltering \
+-lvtkGeovis \
+-lvtkGraphics \
+-lvtkhdf5 \
+-lvtkHybrid \
+-lvtkImaging \
+-lvtkInfovis \
+-lvtkIO \
+-lvtkjpeg \
+-lvtklibxml2 \
+-lvtkmetaio \
+-lvtkNetCDF \
+-lvtkNetCDF_cxx \
+-lvtkpng \
+-lvtkproj4 \
+-lvtkRendering \
+-lvtksqlite \
+-lvtksys \
+-lvtktiff \
+-lvtkverdict \
+-lvtkViews \
+-lvtkVolumeRendering \
+-lvtkWidgets \
+-lvtkzlib
+
+# Boost
+Release: LIBS += -L$(PCL_ROOT)/3rdParty/Boost/lib/ \
+-llibboost_date_time-vc100-mt-1_49 \
+-llibboost_thread-vc100-mt-1_49 \
+-llibboost_filesystem-vc100-mt-1_49 \
+-llibboost_system-vc100-mt-1_49 \
+-llibboost_iostreams-vc100-mt-1_49
+
+#FLANN
+Release: LIBS += -L$(PCL_ROOT)/3rdParty/FLANN/lib/ \
+-lflann_cpp_s
+
+#OpenNI
+Release: LIBS += -L$(OPEN_NI_LIB) \
+-lopenNI \
+-lOpenNI \
+-lNiSampleModule \
+-lNiSampleExtensionModule
+
+#glut
+Release: LIBS += -lglut
+
+# VTK dependency
+Release: LIBS += advapi32.lib
